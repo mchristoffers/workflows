@@ -35,10 +35,15 @@ on:
         required: false
         type: string
         default: "linux/amd64"
+      runner:
+        description: "Runner label(s). Use 'self-hosted' for a local runner with Docker layer cache."
+        required: false
+        type: string
+        default: "ubuntu-latest"
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runner }}
     permissions:
       contents: read
       packages: write
